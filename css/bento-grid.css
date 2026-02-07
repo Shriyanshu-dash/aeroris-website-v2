@@ -1,0 +1,432 @@
+/* Bento Grid Section Styles */
+.bento-section {
+    background: transparent;
+    padding: 8rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    /* Prevent bleed */
+    position: relative;
+}
+
+.bento-container {
+    max-width: 72rem;
+    /* Reduced max-width for tighter feel */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.bento-label {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+    display: block;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Grid Layout */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    grid-auto-rows: minmax(240px, auto);
+    /* Flexible height */
+}
+
+@media (min-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Premium Glass Card Styles */
+.bento-card {
+    /* Glass Effect */
+    background: linear-gradient(145deg, rgba(23, 23, 23, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.5rem;
+    /* Larger refined radius */
+    padding: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        0 10px 10px -5px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Add inner glow vignette */
+.bento-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.04), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bento-card:hover::after {
+    opacity: 1;
+}
+
+/* Content Area */
+.bento-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+    z-index: 2;
+}
+
+.bento-center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.bento-text {
+    position: relative;
+    z-index: 10;
+}
+
+.bento-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.bento-desc {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Spans - 4 Column Logic */
+.span-2-2 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.span-2-1 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.span-6-1 {
+    grid-column: span 1;
+}
+
+/* Fallback mobile */
+
+@media (min-width: 768px) {
+    .span-2-2 {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .span-2-1 {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .span-6-1 {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    /* Desktop 4-col */
+    .span-2-2 {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .span-2-1 {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .span-6-1 {
+        grid-column: span 4;
+    }
+
+    /* Full width */
+}
+
+/* --- Specific Animations / Visuals --- */
+
+/* 1. Type Tester (Agents) */
+.type-tester-text {
+    font-family: 'Outfit', serif;
+    font-size: 4rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: floatY 6s ease-in-out infinite;
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+    .type-tester-text {
+        font-size: 7rem;
+    }
+}
+
+@keyframes floatY {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 2. Layout Animation (Workflows) */
+.layout-grid {
+    display: grid;
+    gap: 6px;
+    width: 100%;
+    max-width: 160px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layout-grid div {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    height: 24px;
+    width: 100%;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bento-card:hover .layout-grid div {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 3. Global Network (Intelligence) */
+.gn-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gn-globe {
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 10;
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4));
+    transition: transform 0.5s ease;
+}
+
+.bento-card:hover .gn-globe {
+    transform: scale(1.1) rotate(15deg);
+}
+
+.gn-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    animation: radar-ping 3s infinite linear;
+}
+
+@keyframes radar-ping {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* 4. Speed Indicator (Automate) */
+.speed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.speed-display {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.speed-loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.speed-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+}
+
+.speed-label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.speed-bar-bg {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    /* margin-top: auto; Remove if not needed */
+}
+
+.speed-bar-fill {
+    height: 100%;
+    background: #fff;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.2s ease-out;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* 5. Security (Strategy) */
+.security-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.shield-box {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.shield-box:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.shield-icon {
+    font-size: 1.5rem;
+    color: #64748B;
+    transition: color 0.3s;
+}
+
+.shield-box:hover .shield-icon {
+    color: #fff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+.shield-box.active {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.shield-box.active .shield-icon {
+    color: #fff;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
