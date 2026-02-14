@@ -1,0 +1,227 @@
+/* ========================================
+   PROCESS CARDS - MOBILE FIX
+   Prevents overflow and ensures professional mobile layout
+   ======================================== */
+
+/* Ensure all containers respect mobile boundaries */
+.process-container,
+.process-card-container,
+.mock-process-card {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* MOBILE FIX: Prevent horizontal overflow */
+@media (max-width: 768px) {
+
+    /* Container fixes */
+    .process-content-wrapper {
+        padding: 1rem !important;
+        overflow: hidden !important;
+    }
+
+    .mock-process-card {
+        overflow: hidden !important;
+    }
+
+    /* Content grid - stack vertically on mobile */
+    .content-grid.two-col {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Text column - prevent overflow */
+    .text-col {
+        max-width: 100% !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+    }
+
+    .text-col h3 {
+        font-size: 1.25rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .text-col p {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Step 1: Dashboard grid - ensure no overflow */
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+        padding: 0.75rem !important;
+    }
+
+    .dash-mini-card {
+        padding: 0.6rem !important;
+        min-width: 0 !important;
+    }
+
+    .dash-value {
+        font-size: 1rem !important;
+    }
+
+    .dash-header {
+        font-size: 0.65rem !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .dash-header .badge {
+        font-size: 0.55rem !important;
+        padding: 0.1rem 0.3rem !important;
+        white-space: nowrap !important;
+    }
+
+    /* Weakest systems - prevent text overflow */
+    .weakest-systems-card {
+        padding: 0.75rem !important;
+    }
+
+    .ws-info {
+        min-width: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .ws-info span {
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .ws-score {
+        font-size: 0.7rem !important;
+        min-width: 45px !important;
+    }
+
+    /* Step 2: Code editor - prevent horizontal scroll */
+    .editor-body {
+        font-size: 0.7rem !important;
+        padding: 0.75rem !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .editor-body .line {
+        white-space: pre !important;
+        min-width: 100% !important;
+    }
+
+    .editor-body .ln {
+        width: 2ch !important;
+        margin-right: 0.5em !important;
+        font-size: 0.65rem !important;
+    }
+
+    .filename {
+        font-size: 0.65rem !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+    }
+
+    /* Step 3: Growth chart - responsive sizing */
+    .growth-chart-wrap {
+        height: 120px !important;
+        padding: 0.75rem !important;
+        overflow: hidden !important;
+    }
+
+    .y-axis {
+        font-size: 0.55rem !important;
+        min-width: 24px !important;
+    }
+
+    .bottom-stats {
+        flex-wrap: wrap !important;
+        gap: 0.75rem !important;
+    }
+
+    .b-stat {
+        font-size: 0.7rem !important;
+        min-width: 45% !important;
+    }
+
+    .bs-val {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* VERY SMALL MOBILE: Additional fixes */
+@media (max-width: 480px) {
+
+    /* Stack dashboard grid to single column */
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+
+    .dash-mini-card {
+        padding: 0.75rem !important;
+    }
+
+    /* Smaller typography */
+    .step-label {
+        font-size: 0.65rem !important;
+        padding: 0.2rem 0.6rem !important;
+    }
+
+    .text-col h3 {
+        font-size: 1.1rem !important;
+    }
+
+    .text-col p {
+        font-size: 0.85rem !important;
+    }
+
+    /* Code editor smaller */
+    .editor-body {
+        font-size: 0.65rem !important;
+        padding: 0.6rem !important;
+    }
+
+    /* Chart smaller */
+    .growth-chart-wrap {
+        height: 100px !important;
+        padding: 0.6rem !important;
+    }
+
+    /* Stats stack better */
+    .bottom-stats {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+
+    .b-stat {
+        min-width: 100% !important;
+    }
+
+    /* Weakest systems - better mobile layout */
+    .ws-item {
+        gap: 0.5rem !important;
+    }
+
+    .ws-icon {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .content-grid.two-col {
+        gap: 1.5rem !important;
+    }
+
+    .text-col h3 {
+        font-size: 1.35rem !important;
+    }
+
+    .text-col p {
+        font-size: 0.92rem !important;
+    }
+}

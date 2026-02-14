@@ -1,0 +1,1102 @@
+/* =========================================
+   MOBILE-RESPONSIVE OVERHAUL
+   Targets: 320px, 360px, 768px, 1024px
+   Desktop remains pixel-perfect.
+   ========================================= */
+
+/* --- Global Safeguards --- */
+html, body {
+    overflow-x: hidden;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Mobile Hamburger Menu --- */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 24px 40px;
+}
+
+.mobile-menu-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.mobile-menu-overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.mobile-menu-overlay ul li a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #A1A1AA;
+    text-decoration: none;
+    padding: 12px 16px;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay ul li a:hover,
+.mobile-menu-overlay ul li a.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu-overlay .mobile-cta {
+    margin-top: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay .mobile-cta:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* ===========================================
+   BREAKPOINT: max-width 1024px (Tablet & below)
+   =========================================== */
+@media (max-width: 1024px) {
+
+    /* Show hamburger, hide desktop nav & CTA */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .spotlight-nav {
+        display: none !important;
+    }
+
+    .header-inner .animated-shine-btn {
+        display: none !important;
+    }
+
+    .header-inner {
+        justify-content: space-between;
+    }
+
+    /* Hero adjustments */
+    h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+    }
+
+    #flipTextTarget {
+        font-size: clamp(2.5rem, 8vw, calc(5rem + 17pt));
+    }
+
+    .headline-sub {
+        font-size: 0.65em;
+    }
+
+    .hero-content {
+        padding-top: 3rem;
+    }
+
+    .hero-section {
+        padding-top: 140px;
+        padding-bottom: 80px;
+    }
+
+    /* Section spacing */
+    .section {
+        padding: 80px 0;
+    }
+
+    /* Sticky Features */
+    .sticky-header .section-title {
+        font-size: 2.25rem;
+    }
+
+    .sticky-card {
+        max-width: 100%;
+    }
+
+    /* Process tabs */
+    .process-card-container {
+        padding: 30px;
+    }
+
+    .content-grid.two-col {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    /* Comparison */
+    .comparison-grid {
+        gap: 24px;
+    }
+
+    /* Team */
+    .team-card {
+        max-width: 100%;
+    }
+
+    .team-image {
+        width: 220px;
+        height: 240px;
+    }
+
+    /* Contact section */
+    .contact-title,
+    .contact-subtitle {
+        font-size: 2.2rem;
+    }
+
+    /* WCU Grid */
+    .wcu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .outer {
+        width: 100%;
+    }
+
+    /* Footer */
+    .footer-content {
+        gap: 16px;
+    }
+}
+
+
+/* ===========================================
+   BREAKPOINT: max-width 768px (Mobile landscape / Small tablet)
+   =========================================== */
+@media (max-width: 768px) {
+
+    /* Container */
+    .container {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    /* Hero */
+    h1 {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+        margin-bottom: 1.25rem;
+    }
+
+    #flipTextTarget {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+    }
+
+    .headline-sub {
+        font-size: 0.6em;
+        margin-top: 6px;
+    }
+
+    .hero-section {
+        padding-top: 120px;
+        padding-bottom: 60px;
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding-top: 2rem;
+        max-width: 100%;
+    }
+
+    .subheadline {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        max-width: 90%;
+    }
+
+    .btn-hero-primary {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .cta-group {
+        margin-bottom: 30px;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+        bottom: 20px;
+    }
+
+    /* Founder Section */
+    .founder-section {
+        padding: 80px 0;
+    }
+
+    .founder-quote {
+        font-size: 1.35rem;
+        line-height: 1.5;
+    }
+
+    .founder-section::before {
+        font-size: 150px;
+    }
+
+    .founder-badge {
+        margin-bottom: 30px;
+    }
+
+    .founder-profile {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .profile-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-role {
+        text-align: center;
+    }
+
+    /* Glass Card */
+    .glass-card {
+        padding: 20px 24px;
+        border-radius: 16px;
+    }
+
+    /* Why Choose Us */
+    .wcu-section {
+        padding: 5rem 0;
+    }
+
+    .wcu-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: 20px;
+    }
+
+    .wcu-card {
+        min-height: 320px;
+        padding: 30px 20px;
+    }
+
+    .outer {
+        width: 100%;
+    }
+
+    .section-header-center {
+        margin-bottom: 2.5rem;
+    }
+
+    h2.section-title {
+        font-size: 1.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Bento Grid */
+    .bento-section {
+        padding: 4rem 1rem;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .span-2-2,
+    .span-2-1,
+    .span-6-1 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .bento-card {
+        min-height: 280px;
+        padding: 1.5rem;
+    }
+
+    .type-tester-text {
+        font-size: 3.5rem;
+    }
+
+    /* Sticky Features */
+    .sticky-features-section {
+        padding: 3rem 0;
+    }
+
+    .sticky-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .sticky-header .section-title {
+        font-size: 1.75rem;
+    }
+
+    .sticky-header .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .sticky-card {
+        position: relative;
+        top: auto;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 100%;
+        min-height: auto;
+    }
+
+    .sticky-card h3 {
+        grid-column: 1;
+        font-size: 1.35rem;
+    }
+
+    .sticky-card p {
+        grid-column: 1;
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    .yield-icon {
+        grid-row: auto;
+        width: 50px;
+        height: 50px;
+    }
+
+    .yield-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Process */
+    .process-card-container {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .process-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .tab-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+
+    .content-grid.two-col {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .text-col h3 {
+        font-size: 1.5rem;
+    }
+
+    .visual-col {
+        min-height: auto;
+    }
+
+    /* Integrations / Marquee */
+    .integrations-marquee-container {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+
+    .marquee-card-frame {
+        padding: 1rem;
+        border-radius: 0.75rem;
+    }
+
+    .interactive-icon-wrapper {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 0 0.5rem;
+    }
+
+    /* Comparison */
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .aeroris-col {
+        padding-left: 20px;
+    }
+
+    .comp-inner-card {
+        padding: 20px;
+    }
+
+    /* Team */
+    .team-card {
+        flex-direction: column-reverse;
+        padding: 24px;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .team-content {
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .team-image {
+        width: 100%;
+        height: 250px;
+        max-width: 300px;
+    }
+
+    .founder-name {
+        font-size: 1.25rem;
+    }
+
+    /* Contact Section (Homepage) */
+    .contact {
+        padding: 60px 0;
+    }
+
+    .contact-title,
+    .contact-subtitle {
+        font-size: 1.75rem;
+    }
+
+    .contact-tag {
+        font-size: 0.8rem;
+    }
+
+    .btn-glow {
+        padding: 12px 22px;
+        font-size: 0.9rem;
+    }
+
+    .social-icons-wrapper {
+        gap: 12px;
+    }
+
+    .social-icon-link {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    /* Contact Page */
+    .contact-page {
+        padding-top: 120px !important;
+    }
+
+    .contact-header h1 {
+        font-size: 2.25rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 60px;
+    }
+
+    .info-card {
+        min-height: auto;
+        padding: 28px;
+    }
+
+    .social-connect-card {
+        padding: 28px;
+        min-height: auto;
+    }
+
+    .social-title {
+        font-size: 1.75rem;
+    }
+
+    .social-desc {
+        font-size: 0.95rem;
+    }
+
+    .icon-container-social {
+        width: 60px;
+        height: 60px;
+    }
+
+    .icon-container-social svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .social-icons-row {
+        gap: 20px;
+        justify-content: center;
+    }
+
+    /* Blog */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .card-image-wrapper {
+        height: 200px;
+    }
+
+    .blog-card h3 {
+        font-size: 1.25rem;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 40px 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .footer-left,
+    .footer-right {
+        justify-content: center;
+    }
+
+    /* Dashboard mocks - handled by process-cards.css */
+
+    /* Logo grid */
+    .logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px 24px;
+    }
+
+    .logo-item {
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+    }
+
+    /* Integrations section decorative lines hide */
+    .decorative-lines,
+    .d-line {
+        display: none !important;
+    }
+
+    /* Benefits grid */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .benefit-card {
+        padding: 30px 24px;
+    }
+
+    /* Services bento grid */
+    .services-bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card.wide-card {
+        grid-column: span 1;
+    }
+
+    /* Features grid */
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Security shields */
+    .security-container {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .shield-box {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .shield-icon {
+        font-size: 1.1rem;
+    }
+
+    /* Pill badge */
+    .pill-badge {
+        font-size: 0.65rem;
+        padding: 5px 12px;
+    }
+
+    /* Coding animation */
+    .code-text-layer {
+        padding: 16px;
+        font-size: 0.75rem;
+    }
+
+    /* mock-code-editor handled by process-cards.css */
+}
+
+
+/* ===========================================
+   BREAKPOINT: max-width 480px (Small phones)
+   =========================================== */
+@media (max-width: 480px) {
+
+    /* Hero */
+    h1 {
+        font-size: clamp(1.75rem, 6.5vw, 2.5rem);
+    }
+
+    #flipTextTarget {
+        font-size: clamp(1.75rem, 6.5vw, 2.5rem);
+    }
+
+    .headline-sub {
+        font-size: 0.55em;
+    }
+
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    .hero-content {
+        padding-top: 1.5rem;
+    }
+
+    .subheadline {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-hero-primary {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    /* Section titles */
+    h2.section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.85rem;
+    }
+
+    /* Founder */
+    .founder-section {
+        padding: 60px 0;
+    }
+
+    .founder-quote {
+        font-size: 1.15rem;
+    }
+
+    .founder-section::before {
+        font-size: 100px;
+    }
+
+    /* WCU */
+    .wcu-card {
+        min-height: 280px;
+        padding: 24px 16px;
+    }
+
+    .wcu-title {
+        font-size: 1.3rem;
+    }
+
+    .wcu-desc {
+        font-size: 0.85rem;
+    }
+
+    /* Bento */
+    .bento-card {
+        min-height: 240px;
+        padding: 1.25rem;
+    }
+
+    .bento-title {
+        font-size: 1.15rem;
+    }
+
+    .bento-desc {
+        font-size: 0.85rem;
+    }
+
+    .type-tester-text {
+        font-size: 2.5rem;
+    }
+
+    /* Speed indicator */
+    .speed-text {
+        font-size: 1.5rem;
+    }
+
+    /* Sticky cards */
+    .sticky-card {
+        padding: 1.25rem;
+    }
+
+    .sticky-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .sticky-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Process tabs */
+    .process-card-container {
+        padding: 16px;
+    }
+
+    .text-col h3 {
+        font-size: 1.25rem;
+    }
+
+    .text-col p {
+        font-size: 0.9rem;
+    }
+
+    /* Integrations */
+    .marquee-title {
+        font-size: 1.35rem;
+    }
+
+    .interactive-icon-wrapper {
+        width: 3rem;
+        height: 3rem;
+        margin: 0 0.35rem;
+    }
+
+    /* Comparison */
+    .comp-brand-header {
+        font-size: 1rem;
+    }
+
+    .comp-list li {
+        font-size: 0.85rem;
+        padding: 14px 0;
+    }
+
+    /* Contact */
+    .contact-title,
+    .contact-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .contact-desc {
+        font-size: 0.85rem;
+    }
+
+    /* Contact page */
+    .contact-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .social-title {
+        font-size: 1.5rem;
+    }
+
+    .icon-container-social {
+        width: 50px;
+        height: 50px;
+    }
+
+    .icon-container-social svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Blog */
+    .card-image-wrapper {
+        height: 170px;
+    }
+
+    .blog-card h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Team */
+    .team-card {
+        padding: 20px;
+    }
+
+    .team-image {
+        height: 220px;
+    }
+
+    .founder-name {
+        font-size: 1.1rem;
+    }
+
+    .founder-role {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    /* Footer */
+    .footer-left,
+    .footer-right {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Logo grid smaller */
+    .logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px 16px;
+    }
+
+    .logo-item {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+
+    /* Mock UI items */
+    .mock-ui-item {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+
+    /* Lamp effects scale down */
+    .lamp-beam {
+        height: 8rem;
+        width: 15rem;
+    }
+
+    .lamp-glow-orb {
+        width: 14rem;
+        height: 5rem;
+    }
+
+    /* Coding editor */
+    .code-text-layer {
+        padding: 12px;
+        font-size: 0.7rem;
+    }
+}
+
+
+/* ===========================================
+   BREAKPOINT: max-width 360px (Primary mobile target)
+   =========================================== */
+@media (max-width: 360px) {
+
+    .container {
+        padding: 0 12px;
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    #flipTextTarget {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .hero-section {
+        padding-top: 90px;
+    }
+
+    h2.section-title {
+        font-size: 1.35rem;
+    }
+
+    .founder-quote {
+        font-size: 1rem;
+    }
+
+    .wcu-card {
+        min-height: auto;
+        padding: 20px 14px;
+    }
+
+    .bento-card {
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    .type-tester-text {
+        font-size: 2rem;
+    }
+
+    .sticky-card {
+        padding: 1rem;
+    }
+
+    .process-card-container {
+        padding: 12px;
+    }
+
+    .content-grid.two-col {
+        padding: 16px;
+    }
+
+    .contact-title,
+    .contact-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .contact-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .social-title {
+        font-size: 1.25rem;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .social-connect-card {
+        padding: 20px;
+    }
+
+    .team-card {
+        padding: 16px;
+    }
+
+    .team-image {
+        height: 200px;
+    }
+
+    .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .interactive-icon-wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 0.25rem;
+    }
+}
+
+
+/* ===========================================
+   BREAKPOINT: max-width 320px (Smallest phones)
+   =========================================== */
+@media (max-width: 320px) {
+
+    .container {
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 1.35rem;
+    }
+
+    #flipTextTarget {
+        font-size: 1.35rem;
+    }
+
+    h2.section-title {
+        font-size: 1.2rem;
+    }
+
+    .subheadline {
+        font-size: 0.8rem;
+    }
+
+    .btn-hero-primary {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .founder-quote {
+        font-size: 0.9rem;
+    }
+
+    .bento-card {
+        padding: 0.875rem;
+    }
+
+    .type-tester-text {
+        font-size: 1.75rem;
+    }
+
+    .wcu-title {
+        font-size: 1.15rem;
+    }
+
+    .contact-title,
+    .contact-subtitle {
+        font-size: 1.1rem;
+    }
+}

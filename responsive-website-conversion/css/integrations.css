@@ -1,0 +1,212 @@
+/* Integrations / Infinite Marquee Styles */
+
+.integrations-marquee-container {
+    width: 100%;
+    min-height: 600px;
+    /* Reduced from min-h-screen for section fit */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glass Card Container */
+.marquee-card-frame {
+    width: 100%;
+    max-width: 72rem;
+    /* max-w-6xl */
+    position: relative;
+    border-radius: 1rem;
+    /* rounded-2xl */
+    background: rgba(10, 10, 10, 0.5);
+    /* bg-card/50 */
+    backdrop-filter: blur(8px);
+    /* backdrop-blur-sm */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* border-border/50 */
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    /* shadow-2xl */
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* Background Gradients */
+.marquee-bg-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), transparent, rgba(99, 102, 241, 0.05));
+}
+
+/* Content */
+.marquee-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.marquee-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.marquee-title {
+    font-size: 1.875rem;
+    /* 3xl */
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.marquee-subtitle {
+    color: #a1a1aa;
+    /* muted-foreground */
+}
+
+/* Moving Row */
+.moving-row-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.moving-row {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    /* Allow content to dictate width */
+    will-change: transform;
+}
+
+/* Interactive Icon */
+.interactive-icon-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    margin: 0 0.75rem;
+    /* mx-3 */
+    width: 5rem;
+    /* w-20 */
+    height: 5rem;
+    /* h-20 */
+    perspective: 1000px;
+}
+
+.icon-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.75rem;
+    /* rounded-xl */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 10, 0.4);
+    /* bg-background/40 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* border-border/50 */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.icon-box.hovered {
+    background: rgba(10, 10, 10, 0.8);
+    border-color: rgba(99, 102, 241, 0.5);
+    /* primary/50 */
+}
+
+.icon-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    /* primary/10 */
+    filter: blur(12px);
+    /* blur-xl */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.icon-box.hovered .icon-glow {
+    opacity: 1;
+}
+
+.icon-box i {
+    font-size: 2rem;
+    /* w-8 h-8 equiv roughly */
+    color: #71717a;
+    /* muted-foreground */
+    transition: color 0.3s ease;
+}
+
+.icon-box.hovered i {
+    color: #6366f1;
+    /* primary (indigo-500) */
+}
+
+/* Dividers */
+.marquee-divider {
+    position: relative;
+    height: 1px;
+    width: 100%;
+}
+
+.marquee-divider::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.marquee-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    font-size: 0.875rem;
+    color: #71717a;
+}
+
+/* Integrations Mobile Fix */
+@media (max-width: 768px) {
+    .integrations-marquee-container {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+
+    .marquee-card-frame {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin: 0 0.5rem;
+    }
+
+    .marquee-title {
+        font-size: 1.35rem;
+    }
+
+    .marquee-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .interactive-icon-wrapper {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 0 0.35rem;
+    }
+
+    .icon-box i {
+        font-size: 1.5rem;
+    }
+
+    .marquee-footer {
+        font-size: 0.75rem;
+    }
+
+    .moving-row-wrapper {
+        padding: 0.5rem 0;
+    }
+}

@@ -1,0 +1,24 @@
+/* CRITICAL FIX: Ensure parent containers don't block sticky positioning */
+
+/* Remove overflow restrictions that break position:sticky */
+body {
+    overflow-x: hidden;
+    overflow-y: scroll !important;
+    /* Allow vertical scroll */
+}
+
+.section,
+.sticky-features-section {
+    overflow: visible !important;
+    /* MUST be visible for sticky to work */
+}
+
+.container {
+    overflow: visible !important;
+    /* MUST be visible for sticky to work */
+}
+
+.sticky-cards-container {
+    overflow: visible !important;
+    /* MUST be visible for sticky to work */
+}
