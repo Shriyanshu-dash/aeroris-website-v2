@@ -1,0 +1,262 @@
+/* Lamp Effect Styles */
+
+/* Root variables for Lamp - Adjust colors here */
+:root {
+    --lamp-color: #06b6d4;
+    /* Cyan-500 */
+    --lamp-bg: #020617;
+    /* Slate-950 */
+    /* --lamp-bg: #020205; Match site bg if needed */
+}
+
+.lamp-container {
+    background-color: var(--lamp-bg);
+    position: relative;
+    overflow: hidden;
+    /* min-height: 100vh;  User might want it in hero */
+}
+
+.lamp-wrapper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    /* rounded-md */
+}
+
+.lamp-beams-container {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    transform: scaleY(1.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    z-index: 0;
+    margin-top: -100px;
+    /* Shift up like React component */
+}
+
+/* Beams */
+.lamp-beam {
+    position: absolute;
+    inset: auto;
+    height: 14rem;
+    /* h-56 */
+    width: 30rem;
+    background-image: conic-gradient(var(--conic-position), var(--lamp-color), transparent 80%);
+    opacity: 0.5;
+    /* transition: width 0.8s ease-in-out, opacity 0.8s ease-in-out; Use animation */
+    animation: beam-cycle 30s ease-in-out infinite;
+    animation-delay: 0.3s;
+    opacity: 0.5;
+    /* Initial for keyframe 0% match, though animation override handles it */
+}
+
+.lamp-beam.left {
+    right: 50%;
+    /* right-1/2 */
+    --conic-position: from 70deg at center top;
+    background-image: conic-gradient(from 70deg at center top, var(--lamp-color), transparent, transparent);
+}
+
+.lamp-beam.right {
+    left: 50%;
+    /* left-1/2 */
+    --conic-position: from 290deg at center top;
+    background-image: conic-gradient(from 290deg at center top, transparent, transparent, var(--lamp-color));
+}
+
+@keyframes beam-cycle {
+    0% {
+        opacity: 0.5;
+        width: 15rem;
+    }
+
+    4% {
+        opacity: 1;
+        width: 30rem;
+    }
+
+    95% {
+        opacity: 1;
+        width: 30rem;
+    }
+
+    100% {
+        opacity: 0.5;
+        width: 15rem;
+    }
+}
+
+/* Masks inside beams */
+.lamp-mask-bottom {
+    position: absolute;
+    width: 100%;
+    height: 10rem;
+    /* h-40 */
+    bottom: 0;
+    background-color: var(--lamp-bg);
+    z-index: 20;
+    mask-image: linear-gradient(to top, white, transparent);
+    -webkit-mask-image: linear-gradient(to top, white, transparent);
+}
+
+.lamp-mask-side {
+    position: absolute;
+    width: 10rem;
+    /* w-40 */
+    height: 100%;
+    bottom: 0;
+    background-color: var(--lamp-bg);
+    z-index: 20;
+}
+
+.lamp-beam.left .lamp-mask-side {
+    left: 0;
+    mask-image: linear-gradient(to right, white, transparent);
+    -webkit-mask-image: linear-gradient(to right, white, transparent);
+}
+
+.lamp-beam.right .lamp-mask-side {
+    right: 0;
+    mask-image: linear-gradient(to left, white, transparent);
+    -webkit-mask-image: linear-gradient(to left, white, transparent);
+}
+
+/* Glows */
+.lamp-glow-top {
+    position: absolute;
+    top: 50%;
+    height: 12rem;
+    /* h-48 */
+    width: 100%;
+    transform: translateY(3rem) scaleX(1.5);
+    background-color: var(--lamp-bg);
+    filter: blur(40px);
+}
+
+.lamp-glow-overlay {
+    position: absolute;
+    top: 50%;
+    z-index: 50;
+    height: 12rem;
+    width: 100%;
+    background: transparent;
+    opacity: 0.1;
+    backdrop-filter: blur(12px);
+}
+
+.lamp-glow-orb {
+    position: absolute;
+    inset: auto;
+    z-index: 50;
+    height: 9rem;
+    /* h-36 */
+    width: 28rem;
+    transform: translateY(-50%);
+    border-radius: 9999px;
+    background-color: var(--lamp-color);
+    opacity: 0.5;
+    filter: blur(60px);
+    /* blur-3xl */
+}
+
+.lamp-glow-bar-small {
+    position: absolute;
+    inset: auto;
+    z-index: 30;
+    height: 9rem;
+    width: 16rem;
+    /* w-64 */
+    transform: translateY(-6rem);
+    border-radius: 9999px;
+    background-color: #22d3ee;
+    /* cyan-400 */
+    filter: blur(40px);
+    /* blur-2xl */
+    animation: bar-cycle 30s ease-in-out infinite;
+    animation-delay: 0.3s;
+    width: 8rem;
+    /* initial */
+}
+
+@keyframes bar-cycle {
+    0% {
+        width: 8rem;
+    }
+
+    4% {
+        width: 16rem;
+    }
+
+    95% {
+        width: 16rem;
+    }
+
+    100% {
+        width: 8rem;
+    }
+}
+
+.lamp-glow-bar-large {
+    position: absolute;
+    inset: auto;
+    z-index: 50;
+    height: 0.125rem;
+    /* h-0.5 */
+    width: 30rem;
+    transform: translateY(-7rem);
+    background-color: #22d3ee;
+    animation: bar-large-cycle 30s ease-in-out infinite;
+    animation-delay: 0.3s;
+    width: 15rem;
+    /* initial */
+}
+
+@keyframes bar-large-cycle {
+    0% {
+        width: 15rem;
+    }
+
+    4% {
+        width: 30rem;
+    }
+
+    95% {
+        width: 30rem;
+    }
+
+    100% {
+        width: 15rem;
+    }
+}
+
+.lamp-dark-mask {
+    position: absolute;
+    inset: auto;
+    z-index: 40;
+    height: 11rem;
+    /* h-44 */
+    width: 100%;
+    transform: translateY(-12.5rem);
+    background-color: var(--lamp-bg);
+}
+
+.lamp-content {
+    position: relative;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.25rem;
+    transform: translateY(-20rem);
+    /* -translate-y-80 */
+}

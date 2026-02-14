@@ -1,0 +1,251 @@
+/* Sticky Scroll Features Section */
+.sticky-features-section {
+    padding: 6rem 0;
+    position: relative;
+    /* Optional: Ensure section background fits dark theme */
+}
+
+/* Header Animations (Unchanged) */
+.animated-text {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.animated-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay {
+    transition-delay: 0.2s;
+}
+
+/* Header Spacing & Centering (Unchanged) */
+.sticky-header {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    margin-bottom: 5rem;
+}
+
+.sticky-header .section-title {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+
+.sticky-header .section-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Sticky Cards Container */
+.sticky-cards-container {
+    width: 100%;
+    max-width: 900px;
+    /* Accommodate wider cards */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+   LUXURY DARK GLASS CARD DESIGN
+   - Deep charcoal/navy gradient base
+   - Gold gradient edges
+   - Diagonal white gloss streak
+*/
+.sticky-card {
+    position: sticky;
+    top: 180px;
+    margin-bottom: 6rem;
+
+    /* Dimensions - Respecting User's Manual Edits for "Wide" look */
+    width: 100%;
+    max-width: 850px;
+    min-height: 200px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Shape */
+    border-radius: 16px;
+    /* Requested radius */
+    padding: 3rem;
+
+    /* Base Background: Deep charcoal -> midnight navy */
+    background: linear-gradient(135deg, #0B1020 0%, #10172F 100%);
+
+    /* Border Treatment: Transparent border to spacing, visual border handled by pseudo */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Subtle inner rim */
+
+    /* Depth & Shadow */
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    /* Inner vignette hint */
+
+    /* Frosted Overlay mimic */
+    backdrop-filter: blur(10px);
+
+    /* Layout */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /* Icon left, Text right */
+    gap: 0 2.5rem;
+    align-content: center;
+    align-items: center;
+
+    z-index: 1;
+    overflow: hidden;
+    /* Clip the blur streak */
+
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+/* Gold Gradient Border - The "Jewelry" accent */
+.sticky-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1.2px;
+    /* Border width */
+    background: linear-gradient(135deg, #D4AF37, #F6D86B, #D4AF37);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.6;
+    /* Balanced opacity */
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Diagonal White Blur Streak */
+.sticky-card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 120px;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0));
+    transform: rotate(25deg);
+    filter: blur(30px);
+    pointer-events: none;
+    opacity: 0.12;
+    transition: transform 0.6s ease-out;
+}
+
+/* Interactvity */
+.sticky-card:hover {
+    transform: translateY(-6px);
+    /* Lift 6px */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.sticky-card:hover::before {
+    opacity: 1;
+    /* Gold edges intensify */
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+    /* Glow */
+}
+
+.sticky-card:hover::after {
+    transform: rotate(25deg) translateX(40px);
+    /* Parallax shift */
+}
+
+/* Icon Styling */
+.yield-icon {
+    grid-row: 1 / span 2;
+    width: 64px;
+    height: 64px;
+    background: #000000;
+    /* Keep icon black card */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sticky-card:hover .yield-icon {
+    border-color: #D4AF37;
+    /* Gold stroke on hover */
+    box-shadow: 0 0 22px rgba(212, 175, 55, 0.2);
+    /* Icon glow */
+    transform: scale(1.05);
+    /* Pulse effect */
+}
+
+.yield-icon svg {
+    width: 32px;
+    height: 32px;
+    /* Ensure icon color works on dark */
+    filter: drop-shadow(0 0 2px rgba(255, 238, 36, 0.3));
+}
+
+/* Typography */
+.sticky-card h3 {
+    grid-column: 2;
+    align-self: end;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    /* Pure white */
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sticky-card p {
+    grid-column: 2;
+    align-self: start;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #C5C7D2;
+    /* Warm gray */
+    letter-spacing: 0.2px;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sticky-card {
+        grid-template-columns: 1fr;
+        /* Stack icon top */
+        gap: 1.5rem;
+        padding: 2rem;
+        height: auto;
+        min-height: auto;
+        text-align: left;
+    }
+
+    .yield-icon {
+        margin-bottom: 0;
+        /* Handled by grid gap */
+    }
+
+    .sticky-card h3 {
+        font-size: 1.75rem;
+    }
+}
