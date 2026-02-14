@@ -1,0 +1,161 @@
+/* ===========================================
+   STICKY SCROLL MASTER OVERRIDE
+   This file has FINAL SAY on all styling
+   Loads LAST to override everything
+   =========================================== */
+
+/* FORCE overflow visible on ALL parents - CRITICAL for sticky */
+html,
+body,
+#root,
+.section,
+.sticky-features-section,
+.container,
+.sticky-cards-container {
+    overflow: visible !important;
+}
+
+/* Allow body vertical scroll */
+body {
+    overflow-y: scroll !important;
+}
+
+/* FORCE STICKY POSITIONING - Maximum specificity */
+.sticky-features-section .sticky-cards-container .sticky-card,
+.sticky-card,
+div.sticky-card {
+    /* STICKY POSITIONING - Like React component */
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 200px !important;
+
+    /* Spacing */
+    margin-bottom: 4rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    /* Dimensions */
+    width: 100% !important;
+    max-width: 850px !important;
+    min-height: 200px !important;
+
+    /* Layout */
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    gap: 2.5rem !important;
+    align-items: center !important;
+    align-content: center !important;
+
+    /* Visual */
+    border-radius: 24px !important;
+    padding: 3rem !important;
+    background: linear-gradient(135deg, #0B1020 0%, #10172F 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(10px) !important;
+
+    /* Stacking */
+    z-index: 10 !important;
+
+    /* Performance */
+    will-change: transform !important;
+
+    /* Hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Hover state */
+.sticky-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* MOBILE: Disable sticky on small screens (≤ 768px) */
+@media (max-width: 768px) {
+
+    .sticky-features-section .sticky-cards-container .sticky-card,
+    .sticky-card,
+    div.sticky-card {
+        position: relative !important;
+        top: auto !important;
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Ensure container doesn't restrict on mobile */
+    .sticky-cards-container {
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Adjust icon size for mobile */
+    .sticky-card .yield-icon {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+
+/* VERY SMALL MOBILE: Stack icon and content vertically (≤ 480px) */
+@media (max-width: 480px) {
+
+    .sticky-features-section .sticky-cards-container .sticky-card,
+    .sticky-card,
+    div.sticky-card {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        text-align: center !important;
+        padding: 1.25rem !important;
+        gap: 1rem !important;
+    }
+
+    .sticky-card .yield-icon {
+        margin: 0 auto 1rem auto !important;
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .sticky-card h3 {
+        font-size: 1.25rem !important;
+    }
+
+    .sticky-card p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* TABLET: Adjust spacing and sizing (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .sticky-features-section .sticky-cards-container .sticky-card,
+    .sticky-card,
+    div.sticky-card {
+        padding: 2.5rem !important;
+        gap: 2rem !important;
+        max-width: 90% !important;
+        top: 150px !important;
+    }
+
+    .sticky-cards-container {
+        max-width: 95% !important;
+    }
+}
+
+/* LARGE DESKTOP: Optimize for big screens (≥ 1400px) */
+@media (min-width: 1400px) {
+
+    .sticky-features-section .sticky-cards-container .sticky-card,
+    .sticky-card,
+    div.sticky-card {
+        max-width: 900px !important;
+    }
+
+    .sticky-cards-container {
+        max-width: 1000px !important;
+    }
+}

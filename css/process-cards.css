@@ -1,0 +1,462 @@
+/* ========================================
+   Process Step Cards - Inner Content Styles
+   ======================================== */
+
+/* Content Grid Layout */
+.content-grid.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.visual-col {
+    width: 100%;
+}
+
+.text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.step-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8B5CF6;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    width: fit-content;
+}
+
+.text-col h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.text-col p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #a1a1aa;
+    margin: 0;
+}
+
+/* ----------------------------------------
+   Mock Process Card (shared container)
+   ---------------------------------------- */
+.mock-process-card {
+    width: 100%;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.mock-process-card.dark-card {
+    background: rgba(9, 9, 11, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ----------------------------------------
+   Process Container & Card Container
+   ---------------------------------------- */
+.process-container {
+    max-width: 100%;
+}
+
+.process-card-container {
+    max-width: 100%;
+}
+
+
+/* ========================================
+   STEP 1 - Dashboard / Weakest Systems
+   ======================================== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.dash-mini-card {
+    background: rgba(24, 24, 27, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+}
+
+.dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #71717a;
+    margin-bottom: 0.5rem;
+}
+
+.dash-header .badge {
+    font-size: 0.6rem;
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+    padding: 0.1rem 0.4rem;
+    border-radius: 9999px;
+    font-weight: 600;
+}
+
+.dash-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ef4444;
+    margin-bottom: 0.25rem;
+}
+
+.dash-chart-line {
+    opacity: 0.5;
+}
+
+.dash-chart-line svg {
+    display: block;
+}
+
+/* Weakest Systems Card (used in Step 1) */
+.weakest-systems-card {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ws-header {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #d4d4d8;
+    margin-bottom: 0.75rem;
+}
+
+.ws-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.ws-item + .ws-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ws-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 0.375rem;
+    color: #a78bfa;
+    font-size: 0.8rem;
+}
+
+.ws-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ws-info span {
+    font-size: 0.75rem;
+    color: #d4d4d8;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8B5CF6, #a78bfa);
+    border-radius: 9999px;
+    transition: width 0.6s ease;
+}
+
+.progress-bar.highlight .fill {
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+.ws-score {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #a78bfa;
+    white-space: nowrap;
+    min-width: 55px;
+    text-align: right;
+}
+
+.ws-score small {
+    font-weight: 400;
+    color: #52525b;
+    display: block;
+    font-size: 0.6rem;
+}
+
+
+/* ========================================
+   STEP 2 - Code Editor
+   ======================================== */
+
+.mock-code-editor {
+    width: 100%;
+    overflow: hidden;
+}
+
+.mock-code-editor.big-editor {
+    min-height: 200px;
+}
+
+.editor-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(24, 24, 27, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.circles {
+    display: flex;
+    gap: 0.375rem;
+}
+
+.circles span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.circles span:nth-child(1) {
+    background: #ef4444;
+}
+
+.circles span:nth-child(2) {
+    background: #eab308;
+}
+
+.circles span:nth-child(3) {
+    background: #22c55e;
+}
+
+.filename {
+    font-size: 0.7rem;
+    color: #71717a;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.02em;
+}
+
+.editor-body {
+    padding: 1rem;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.75;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.editor-body .line {
+    white-space: nowrap;
+    color: #d4d4d8;
+}
+
+.editor-body .ln {
+    display: inline-block;
+    width: 2ch;
+    text-align: right;
+    margin-right: 1em;
+    color: #3f3f46;
+    user-select: none;
+    font-size: 0.72rem;
+}
+
+.editor-body .cmt {
+    color: #52525b;
+    font-style: italic;
+}
+
+.editor-body .kw {
+    color: #c084fc;
+}
+
+.editor-body .func {
+    color: #60a5fa;
+}
+
+.editor-body .str {
+    color: #4ade80;
+}
+
+
+/* ========================================
+   STEP 3 - Growth Chart & Stats
+   ======================================== */
+
+.growth-chart-wrap {
+    display: flex;
+    gap: 0.25rem;
+    padding: 1rem;
+    height: 160px;
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    color: #3f3f46;
+    padding-right: 0.5rem;
+    min-width: 28px;
+    text-align: right;
+}
+
+.chart-area {
+    flex: 1;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+}
+
+.chart-area svg {
+    display: block;
+}
+
+/* Stats Overlay (used in Step 3) */
+.stats-overlay {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat-row-header {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #d4d4d8;
+    margin-bottom: 0.75rem;
+}
+
+.bottom-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.b-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a1a1aa;
+    font-size: 0.75rem;
+}
+
+.b-stat i {
+    color: #8B5CF6;
+    font-size: 0.85rem;
+}
+
+.bs-val {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.85rem;
+}
+
+.bs-lab {
+    color: #52525b;
+    font-size: 0.65rem;
+}
+
+
+/* ========================================
+   Responsive - Process Cards
+   ======================================== */
+
+@media (max-width: 768px) {
+    .content-grid.two-col {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .text-col h3 {
+        font-size: 1.25rem;
+    }
+
+    .text-col p {
+        font-size: 0.88rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .dash-value {
+        font-size: 1rem;
+    }
+
+    .editor-body {
+        font-size: 0.68rem;
+        padding: 0.75rem;
+    }
+
+    .editor-body .ln {
+        width: 2ch;
+        margin-right: 0.5em;
+        font-size: 0.65rem;
+    }
+
+    .growth-chart-wrap {
+        height: 120px;
+        padding: 0.75rem;
+    }
+
+    .bottom-stats {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-label {
+        font-size: 0.65rem;
+    }
+
+    .text-col h3 {
+        font-size: 1.1rem;
+    }
+
+    .text-col p {
+        font-size: 0.82rem;
+    }
+
+    .editor-body {
+        font-size: 0.62rem;
+    }
+
+    .growth-chart-wrap {
+        height: 100px;
+    }
+}

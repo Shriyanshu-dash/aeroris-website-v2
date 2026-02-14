@@ -1,0 +1,84 @@
+/* Apple Glass Card - Premium Refraction Effect */
+
+.glass-card {
+    /* Glass Base */
+    background: rgba(255, 255, 255, 0.03);
+    /* Extremely subtle fill */
+    backdrop-filter: blur(20px);
+    /* Heavy blur */
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Border & Shape */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Thin, crisp border */
+    border-radius: 24px;
+    /* Slightly tighter radius */
+    padding: 30px 60px;
+    /* Reduced vertical, increased horizontal */
+
+    /* Depth */
+    box-shadow:
+        0 4px 24px -1px rgba(0, 0, 0, 0.2),
+        /* Drop shadow */
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    /* Inner rim light */
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1200px;
+    /* Stretched horizontally */
+    width: 95%;
+    /* Responsive width */
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    /* Clip inner glows */
+    isolation: isolate;
+}
+
+/* Optional: Subtle gradient overlay for gloss */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Ambient glow blobs specifically for the card background to enhance blur */
+.glass-card-ambience {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Ensure text inside stands out */
+.glass-card .founder-quote {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    /* Legibility */
+    position: relative;
+    z-index: 2;
+}
+
+/* Glass Card Mobile Fix */
+@media (max-width: 768px) {
+    .glass-card {
+        padding: 20px 24px;
+        border-radius: 16px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,84 @@
+/* =============================================
+   STICKY SCROLL - Clean Implementation
+   Based on React component reference
+   ============================================= */
+
+/* Sticky Cards Container - Must allow overflow for sticky to work */
+.sticky-cards-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: visible;
+    /* CRITICAL: sticky won't work with overflow:hidden */
+}
+
+/* Sticky Card - Matches React: className="sticky" style={{ top: '200px' }} */
+.sticky-card {
+    /* Core sticky positioning - exactly like React component */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 200px;
+
+    /* Spacing between cards */
+    margin-bottom: 4rem;
+    /* mb-16 in Tailwind = 4rem */
+
+    /* Layout - two column grid like React */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: center;
+
+    /* Dimensions */
+    width: 100%;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 200px;
+
+    /* Visual styling */
+    border-radius: 24px;
+    /* rounded-3xl in Tailwind */
+    padding: 3rem;
+    /* p-12 in Tailwind = 3rem */
+
+    /* Background */
+    background: linear-gradient(135deg, #0B1020 0%, #10172F 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+
+    /* Z-index for stacking */
+    z-index: 1;
+
+    /* Smooth transitions */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.sticky-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile responsive - disable sticky on small screens */
+@media (max-width: 768px) {
+    .sticky-card {
+        position: relative;
+        /* Turn off sticky on mobile */
+        top: auto;
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 1.5rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .sticky-card {
+        padding: 2.5rem;
+        gap: 2rem;
+    }
+}

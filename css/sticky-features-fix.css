@@ -1,0 +1,81 @@
+/* STICKY SCROLL FIX - Ensure parent containers don't block sticky */
+.sticky-features-section {
+    padding: 6rem 0;
+    position: relative;
+    /* Ensure no overflow hidden that would break sticky */
+    overflow: visible !important;
+}
+
+.sticky-features-section .container {
+    /* Ensure container doesn't block sticky */
+    overflow: visible !important;
+}
+
+.sticky-cards-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* Ensure no overflow that blocks sticky */
+    overflow: visible !important;
+    /* Provide enough height for sticky to work */
+    min-height: 100vh;
+}
+
+/* STICKY CARD - This MUST work with position sticky */
+.sticky-card {
+    /* CRITICAL: position sticky */
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 200px !important;
+
+    /* Spacing between cards */
+    margin-bottom: 4rem;
+
+    /* Dimensions */
+    width: 100%;
+    max-width: 850px;
+    min-height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Visual styling */
+    border-radius: 24px;
+    padding: 3rem;
+    background: linear-gradient(135deg, #0B1020 0%, #10172F 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+
+    /* Layout */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 2.5rem;
+    align-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+
+    /* Hover effect */
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.sticky-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Test: Add visible indicator when card is actually sticky */
+.sticky-card {
+    border-left: 5px solid transparent;
+}
+
+/* This will show a green border when properly stuck */
+@supports (position: sticky) {
+    .sticky-card {
+        border-left: 5px solid lime;
+    }
+}

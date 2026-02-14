@@ -1,0 +1,147 @@
+/* =========================================
+   MOBILE GEOMETRIC BACKGROUND
+   Strictly mobile-only animated background
+   ========================================= */
+
+.mobile-geometric-bg-container {
+    display: none;
+    /* Hidden on desktop */
+    position: fixed;
+    /* Fixed as wallpaper */
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    /* Behind content */
+    background-color: #030303;
+}
+
+/* Show only on mobile/tablet */
+@media (max-width: 768px) {
+    .mobile-geometric-bg-container {
+        display: block;
+    }
+
+    /* GLOBAL OVERRIDES: Force transparency so background shows through */
+    html,
+    body {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* Make sections transparent */
+    .hero-section,
+    .section,
+    .process-section,
+    .wcu-section,
+    .bento-section,
+    footer,
+    header,
+    .site-footer,
+    main {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+    }
+
+    /* Ensure content is readable on top */
+    .hero-content,
+    .container,
+    .section-header-center,
+    .wcu-grid,
+    .bento-grid {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Ensure hero content sits on top */
+    .hero-section {
+        position: relative;
+        z-index: 1;
+        /* background removal handled above */
+    }
+}
+
+/* Background Blur Layer */
+.geo-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(99, 102, 241, 0.05), transparent, rgba(244, 63, 94, 0.05));
+    filter: blur(60px);
+    -webkit-filter: blur(60px);
+}
+
+/* Shape Wrapper - Handles Entry Animation and Rotation */
+.geo-shape-wrapper {
+    position: absolute;
+    opacity: 0;
+    /* Start hidden */
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+/* Shape Inner - Handles Floating Animation */
+.geo-shape-float {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    animation: geoFloat 12s ease-in-out infinite;
+}
+
+/* Visual Shape */
+.geo-shape-visual {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    /* Full rounded */
+    background: linear-gradient(to right, var(--shape-color), transparent);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Inner Glow */
+.geo-shape-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 70%);
+}
+
+/* Overlay Gradient (Fade to black at bottom) */
+.geo-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #030303, transparent, rgba(3, 3, 3, 0.8));
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes geoFadeInRotate {
+    0% {
+        opacity: 0;
+        transform: translateY(-150px) rotate(calc(var(--target-rotate) - 15deg));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--target-rotate));
+    }
+}
+
+@keyframes geoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(15px);
+    }
+}

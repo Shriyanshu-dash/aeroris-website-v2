@@ -1,0 +1,45 @@
+/* EMERGENCY FIX - Force sticky to work by removing ALL overflow restrictions */
+
+/* Remove any overflow restrictions from body and html */
+html,
+body {
+    overflow-x: visible !important;
+    overflow-y: auto !important;
+}
+
+/* Force section and container to allow sticky */
+.section,
+.sticky-features-section {
+    overflow: visible !important;
+    position: relative !important;
+}
+
+.container {
+    overflow: visible !important;
+}
+
+.sticky-cards-container {
+    overflow: visible !important;
+}
+
+/* FORCE STICKY POSITIONING - with maximum browser support */
+.sticky-card {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 200px !important;
+    margin-bottom: 4rem !important;
+    z-index: 10 !important;
+}
+
+/* Debug: Add highly visible border to prove sticky is working */
+.sticky-card {
+    border-left: 10px solid #00FF00 !important;
+    /* Bright green */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5) !important;
+    /* Green glow */
+}
+
+/* Ensure enough height for scrolling */
+.sticky-features-section {
+    min-height: 300vh !important;
+}
