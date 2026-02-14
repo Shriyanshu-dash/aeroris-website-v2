@@ -1,0 +1,1 @@
+﻿TESTING: Hard refresh browser with Ctrl+Shift+R. Look for BRIGHT GREEN borders on feature cards. If green borders appear, sticky IS working.

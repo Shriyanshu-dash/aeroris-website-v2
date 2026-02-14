@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Scroll Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .test-card {
+            position: sticky;
+            top: 100px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid gold;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 100px;
+            min-height: 200px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .test-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: gold;
+        }
+
+        .test-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .spacer {
+            height: 200vh;
+        }
+
+        .debug {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 300px;
+        }
+
+        .debug div {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="debug" id="debug">
+        <div>🔍 <strong>Sticky Test Debug</strong></div>
+        <div id="scroll-pos">Scroll: 0px</div>
+        <div id="card-status">Cards: Loading...</div>
+        <div id="sticky-status">Sticky: Checking...</div>
+    </div>
+
+    <div class="hero">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Sticky Scroll Test Page</h1>
+        <p style="font-size: 1.2rem; opacity: 0.7;">Scroll down to see sticky cards in action</p>
+        <p style="font-size: 1rem; opacity: 0.5; margin-top: 1rem;">⬇️ Each card should stick at 100px from top ⬇️</p>
+    </div>
+
+    <div class="test-container">
+        <div class="test-card" data-card="1">
+            <h2>Card 1: Workflow Automation</h2>
+            <p>This card should stick to the top (100px from viewport) as you scroll. When Card 2 approaches, this card
+                should scale down and fade.</p>
+        </div>
+
+        <div class="test-card" data-card="2">
+            <h2>Card 2: Custom AI Solutions</h2>
+            <p>This is the second card. It should push Card 1 away as it reaches the sticky position.</p>
+        </div>
+
+        <div class="test-card" data-card="3">
+            <h2>Card 3: AI Assistant</h2>
+            <p>Third card in the sequence. Should stack on top of previous cards.</p>
+        </div>
+
+        <div class="test-card" data-card="4">
+            <h2>Card 4: Sales & Marketing</h2>
+            <p>Fourth card demonstrating the sticky scroll effect.</p>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <script>
+        console.log('🎯 Test page loaded');
+
+        const cards = document.querySelectorAll('.test-card');
+        const debugScroll = document.getElementById('scroll-pos');
+        const debugCards = document.getElementById('card-status');
+        const debugSticky = document.getElementById('sticky-status');
+
+        console.log(`Found ${cards.length} test cards`);
+        debugCards.textContent = `Cards: ${cards.length} found`;
+
+        function updateCards() {
+            const scrollTop = window.pageYOffset;
+            debugScroll.textContent = `Scroll: ${scrollTop}px`;
+
+            let stickyCount = 0;
+
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const stickyTop = 100;
+
+                // Check if sticky
+                if (rect.top <= stickyTop + 5 && rect.top >= stickyTop - 5) {
+                    stickyCount++;
+                    card.style.borderColor = 'lime';
+                } else {
+                    card.style.borderColor = 'gold';
+                }
+
+                // Scale effect
+                if (index < cards.length - 1) {
+                    const nextCard = cards[index + 1];
+                    const nextRect = nextCard.getBoundingClientRect();
+                    const distanceToNext = nextRect.top - stickyTop;
+
+                    if (rect.top <= stickyTop && distanceToNext > 0 && distanceToNext < window.innerHeight) {
+                        const progress = Math.max(0, Math.min(1, 1 - (distanceToNext / window.innerHeight)));
+                        const scale = 1 - (progress * 0.15);
+                        const opacity = 1 - (progress * 0.5);
+
+                        card.style.transform = `scale(${scale})`;
+                        card.style.opacity = opacity;
+                        card.style.transformOrigin = 'top center';
+
+                        console.log(`Card ${index + 1}: scale=${scale.toFixed(2)}, opacity=${opacity.toFixed(2)}`);
+                    } else {
+                        card.style.transform = '';
+                        card.style.opacity = '';
+                    }
+                }
+            });
+
+            debugSticky.textContent = `Sticky: ${stickyCount} active (green border)`;
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateCards();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        updateCards();
+        console.log('✅ Scroll listener attached');
+    </script>
+</body>
+
+</html>
